@@ -31,6 +31,7 @@ clientModel.getcliente = function (llamar) {
 clientModel.getcliente = function (id, callback) {
 
     if (connection) {
+
         let sql = "select idcliente" +
             "primer_nombre" +
             "segundo_nombre" +
@@ -39,12 +40,13 @@ clientModel.getcliente = function (id, callback) {
             "from bas_clientes" +
             "where idcliente" +
             connection.escape(id) + ";";
-        
+
     }
 
     connection.query(sql, function (error, row) {
 
         if (error) {
+
             throw error;
 
         } else {
