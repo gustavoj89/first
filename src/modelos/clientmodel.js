@@ -57,4 +57,56 @@ clientModel.getcliente = function (id, callback) {
     });
 
 
-};
+}
+
+//añadir cliente nuevo
+
+clientModel.insertclient = function (tipcliente, callback) {
+
+    if (connection) {
+
+        let sql = "insert into bas_personas set ?";
+
+        connection.query(sql, tipcliente, function (error, result) {
+
+            if (error) {
+
+                throw error;
+
+            } else {
+
+                callback(null, { "msg": "Registro Insertado" });
+            }
+
+        })
+
+    }
+
+}
+
+//actualizar al cliente
+
+clientModel.updatecliente = function (tipcliente, callback) {
+
+    if (connection) {
+
+        let sql = "update bas_clientes set primer_nombre=" + connection.escape(tipcliente.primer_nombre)
+            + ", segundo_nombre = " + connection.escape(tipcliente.segundo_nombre)
+            + ", primer_apellido = " + connection.escape(tipcliente.primer_apellido)
+            + ", segundo_apellido = " + connection.escape(tipcliente.segundo_apellido)
+
+        connection.query(sql, function (error, result) {
+
+            if (error) {
+                throw error;
+
+
+            } else {
+                callback(null, { "msg": "Registro Actualizado" });
+            }
+
+        })
+
+    }
+
+}
