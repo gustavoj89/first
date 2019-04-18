@@ -1,5 +1,5 @@
 //obtenemos el modelo TipDocModel con toda la funcionalidad
-var TipDocModel = require('../Modelos/tipdocmodel');
+var TipDocModel = require('../modelos/tipdocmodel');
 var express = require('express');
 var router = express.Router();
 
@@ -92,6 +92,7 @@ module.exports = function () {
             }
         });
     });
+
 
 
     //exportamos el objeto para tenerlo disponible en EL APP

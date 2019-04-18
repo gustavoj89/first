@@ -4,8 +4,8 @@ var http = require('http');//protocolo de intercambio de archivos
 var path = require('path');//direccion
 
 
-var tipdoc = require('./src/Rutas/tipdocruta');//ruta
-
+//var tipdoc = require('./src/Rutas/tipdocruta');//ruta
+var bascanchas = require('./src/Rutas/bascanchasruta');//ruta
 
 var app = express();//recibe un constructor
 
@@ -40,7 +40,8 @@ app.use(function (req, res, next)
   //============================================================
 
 
-  app.use('/tipdoc', tipdoc());//ruta para el servicio
+  //app.use('/tipdoc', tipdoc());//ruta para el servicio
+  app.use('/canchas', bascanchas());//ruta para el servicio
 
 
 http.createServer(app).listen(app.get('port'), function ( )
