@@ -8,7 +8,7 @@ var clientModel = {};
 clientModel.getcliente = function (callback) {
 
     if (connection) {
-        let sql = "SELECT id_cliente " 
+        var sql = "SELECT id_cliente " 
             +", primer_nombre " 
             +", segundo_nombre  " 
             +", primer_apellido " 
@@ -24,7 +24,6 @@ clientModel.getcliente = function (callback) {
 
             } else {
                 callback(null, rows);
-                console.log(callback);
             }
 
         });
@@ -38,7 +37,7 @@ clientModel.getcliente = function (id, callback) {
 
     if (connection) {
 
-        let sql = "select idcliente" +
+        var sql = "select id_cliente" +
             +", primer_nombre" 
             +", segundo_nombre"
             +", primer_apellido"
@@ -70,13 +69,13 @@ clientModel.getcliente = function (id, callback) {
 
 //añadir cliente nuevo
 
-clientModel.insertclient = function (tipcliente, callback) {
+clientModel.insertclient = function (tipclientdata, callback) {
 
     if (connection) {
 
         let sql = "insert into bas_personas set ?";
 
-        connection.query(sql, tipcliente, function (error, result) {
+        connection.query(sql, tipclientedata, function (error, result) {
 
             if (error) {
 
@@ -95,7 +94,7 @@ clientModel.insertclient = function (tipcliente, callback) {
 
 //actualizar al cliente
 
-clientModel.updatecliente = function (tipcliente, callback) {
+clientModel.updatecliente = function (tipclientedata, callback) {
 
     if (connection) {
 
