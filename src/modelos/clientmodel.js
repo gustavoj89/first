@@ -5,20 +5,26 @@ var clientModel = {};
 
 //obtencion de todos los clientes
 
-clientModel.getcliente = function (llamar) {
+clientModel.getcliente = function (callback) {
 
     if (connection) {
-        let sql = "SELECT idcliente " +
-            ", primer_nombre " +
-            ", segundo_nombre  " +
-            " FROM ct_clientes  " +
+        let sql = "SELECT id_cliente " 
+            +", primer_nombre " 
+            +", segundo_nombre  " 
+            +", primer_apellido " 
+            +", segundo_apellido  " 
+            +", id_tipodoc  "
+            +", num_documento  "
+            +", telefono  "
+            +" FROM ct_clientes  " 
             " ORDER BY primer_nombre ;";
         connection.query(sql, function (error, rows) {
             if (error) {
                 throw error;
 
             } else {
-                llamar(null, rows);
+                callback(null, rows);
+                console.log(callback);
             }
 
         });
@@ -33,12 +39,15 @@ clientModel.getcliente = function (id, callback) {
     if (connection) {
 
         let sql = "select idcliente" +
-            "primer_nombre" +
-            "segundo_nombre" +
-            "primer_apellido" +
-            "segundo_apellido" +
-            "from bas_clientes" +
-            "where idcliente" +
+            +", primer_nombre" 
+            +", segundo_nombre"
+            +", primer_apellido"
+            +", segundo_apellido"
+            +", id_tipodoc"
+            +", num_documento"
+            +", telefono"
+            +", from bas_clientes" 
+            +", where idcliente" 
             connection.escape(id) + ";";
 
     }
