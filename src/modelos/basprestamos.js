@@ -1,15 +1,18 @@
 var connection = require('../Conexion');
 //creamos un objeto para ir almacenandotodo lo que necesitemos
-var TipDocModel = {};
+var PrestamosModel = {};
 
 //---------------------------------------------------------------
-//obtenemos todos los tipos de documento
-TipDocModel.getTipDocs = function (callback) {
+//obtenemos todos los prestamos
+PrestamosModel.getprestamo = function (callback) {
     if (connection) {
-        var sql = "SELECT id_tipodoc " +
-            ", tipo_documento " +
-           " FROM bas_documentos" +
-            " ORDER BY tipo_documento ;";
+        var sql = "SELECT id_prestamo" +
+            ", id_elemento" +
+            ", fecha_prestamo" +
+            ", hora_prestamo" +
+            ",id_valor"+
+           " FROM bas_prestamos" +
+            " ORDER BY id_prestamo ;";
 
         connection.query(sql, function (error, rows) {
             if (error) {
@@ -21,15 +24,17 @@ TipDocModel.getTipDocs = function (callback) {
         });
     }
 };
-
 //---------------------------------------------------------------
-//obtenemos un tipo doc por su id
-TipDocModel.getTipDoc = function (id, callback) {
+//obtenemos un prestamo por su id
+PrestamosModel.getprestamos = function (id, callback) {
     if (connection) {
-        var sql = "SELECT id_tipodoc" +
-            ", tipo_documento " +
-            " FROM bas_documentos" +
-            " WHERE id_tipodoc= " +
+        var sql = "SELECT id_prestamo" +
+        ", id_elemento" +
+        ", fecha_prestamo" +
+        ", hora_prestamo" +
+        ",id_valor"+
+            " FROM bas_prestamos" +
+            " WHERE id_prestamo= " +
             connection.escape(id) + ";";
 
         //console.log(id);
@@ -47,12 +52,12 @@ TipDocModel.getTipDoc = function (id, callback) {
 };
 
 //---------------------------------------------------------------
-//añadir un nuevo tipo de documento
-TipDocModel.insertTipDoc = function (TipDocData, callback) {
+//añadir un nuevo prestamo
+PrestamosModel.insertPrestamo = function (TipPrestamo, callback) {
     if (connection) {
-        var sql = "INSERT INTO bas_documentos SET ?";
+        var sql = "INSERT INTO bas_prestamos SET ?";
 
-        connection.query(sql, TipDocData, function (error, result) {
+        connection.query(sql, TipPrestamo, function (error, result) {
             //se muestra el mensaje correspondiente
             if (error) {
                 throw error;
@@ -63,14 +68,16 @@ TipDocModel.insertTipDoc = function (TipDocData, callback) {
         });
     }
 };
-
 //---------------------------------------------------------------
-//actualizar un tipo de documento
-TipDocModel.updateTipDoc = function (TipDocData, callback) {
+//actualizar un prestamo
+PrestamosModel.updatePrestamo = function (TipPrestamo, callback) {
 
     if (connection) {
-        var sql = "UPDATE bas_documentos SET tipo_documento = " + connection.escape(TipDocData.tipo_documento) +
-         " WHERE  id_tipodoc =  " + connection.escape(TipDocData.id_tipodoc) + ";";
+        var sql = "UPDATE bas_prestamos SET id_elemento = " + connection.escape(TipPrestamo.id_elemento) +
+        "fecha_prestamo =" + connection.escape(TipPrestamo.fecha_prestamo)+
+        "hora_prestamo =" + connection.escape(TipPrestamo.hora_prestamo)+
+        "id_valor =" + connection.escape(TipPrestamo.id_valor)+
+         " WHERE  id_prestamo =  " + connection.escape(TipPrestamo.id_prestamo) + ";";
 
         connection.query(sql, function (error, result) {
             //se muestra el mensaje correspondiente
@@ -83,7 +90,6 @@ TipDocModel.updateTipDoc = function (TipDocData, callback) {
         });
     }
 };
-
 //---------------------------------------------------------------
 //exportamos el objeto para tenerlo disponible en la zona de rutas
-module.exports = TipDocModel;
+module.exports = PrestamosModel;
