@@ -47,9 +47,9 @@ module.exports = function () {
         //creamos un objeto Json con los datos del tipo de documento
         var TipDocData =
         {
-            id_tip_doc: null,
+            id_tipodoc: null,
             tipo_documento: req.body.tipo_documento,
-            iniciales_tip_doc: req.body.iniciales_tip_doc,
+            
         };
 
 
@@ -72,9 +72,9 @@ module.exports = function () {
 
         var TipDocData =
         {
-            id_tip_doc: req.body.id_tip_doc,
+            id_tipodoc: req.body.id_tipodoc,
             tipo_documento: req.body.tipo_documento,
-            iniciales_tip_doc: req.body.iniciales_tip_doc,
+            
         };
 
 
