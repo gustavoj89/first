@@ -6,12 +6,8 @@ var path = require('path');//direccion
 
 var tipdoc = require('./src/rutas/tipdocruta');//ruta
 var tipcancha = require('./src/rutas/bastiposcancharuta');
-<<<<<<< HEAD
-
-=======
 var estados = require('./src/rutas/basestadosruta');
 var prestamo = require('./src/rutas/basprestamosruta');
->>>>>>> cec8a585271e3ce5814754f46c41d12db3dc9b47
 
 var app = express();//recibe un constructor
 
