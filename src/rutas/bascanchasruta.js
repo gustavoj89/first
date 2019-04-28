@@ -50,7 +50,7 @@ module.exports = function () {
             id_cancha: null,
             id_tipo_cancha: req.body.id_tipo_cancha,
             id_estado: req.body.id_estado,
-            nombre_cancha: req.body.nombre_cancha,
+            nombre_cancha: req.body.nombre_cancha
         };
 
 
@@ -71,7 +71,7 @@ module.exports = function () {
     router.put("/", function (req, res) {
         //almacenamos los datos de la petición en un objeto
 
-        var canchadata =
+        var tipcanchadata =
         {
             id_cancha: req.body.id_cancha,
             id_estado: req.body.id_estado,
@@ -81,7 +81,7 @@ module.exports = function () {
 
 
         //usamos la funcion para actualizar
-        bascanchasmodel.updatecancha(canchadata, function (error, data) {
+        bascanchasmodel.updatecancha(tipcanchadata, function (error, data) {
             //se muestra el mensaje correspondiente
             if (data && data.msg) {
                 res.status(200).json(data);

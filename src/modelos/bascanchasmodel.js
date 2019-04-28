@@ -71,13 +71,13 @@ bascachasmodel.insertcancha = function (canchadata, callback) {
 
 //---------------------------------------------------------------
 //actualizar una cancha
-bascachasmodel.updatecancha = function (canchadata, callback) {
+bascachasmodel.updatecancha = function (tipcanchadata, callback) {
 
     if (connection) {
-        var sql = "UPDATE bas_canchas SET nombre_cancha  = " + connection.escape(canchadata.nombre_cancha) +
-            ", id_tipo_cancha = " + connection.escape(canchadata.id_tipo_cancha) +
-            ", id_estado =" + connection.escape(canchadata.id_estado) + 
-            " WHERE  id_tipo_cancha  =  " + connection.escape(canchadata.id_tipo_cancha) + ";";
+        var sql = "UPDATE bas_canchas SET nombre_cancha  = " + connection.escape(tipcanchadata.nombre_cancha) +
+            ", id_tipo_cancha = " + connection.escape(tipcanchadata.id_tipo_cancha) +
+            ", id_estado =" + connection.escape(tipcanchadata.id_estado) + 
+            " WHERE  id_tipo_cancha  =  " + connection.escape(tipcanchadata.id_tipo_cancha) + ";";
 
         connection.query(sql, function (error, result) {
             //se muestra el mensaje correspondiente

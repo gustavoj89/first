@@ -7,7 +7,8 @@ var path = require('path');//direccion
 var tipdoc = require('./src/rutas/tipdocruta');//ruta
 var tipcancha = require('./src/rutas/bastiposcancharuta');
 var estados = require('./src/rutas/basestadosruta');
-var prestamo = require('./src/rutas/basprestamosruta');
+var prestamos = require('./src/rutas/basprestamosruta');
+var canchas = require('./src/rutas/bascanchasruta');
 
 var app = express();//recibe un constructor
 
@@ -46,6 +47,7 @@ app.use(function (req, res, next)
   app.use('/tipcancha', tipcancha());
   app.use('/estados', estados());
   app.use('/prestamos', prestamos());
+  app.use('/canchas', canchas());
 
 
 http.createServer(app).listen(app.get('port'), function ( )
