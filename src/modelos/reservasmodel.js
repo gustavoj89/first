@@ -1,17 +1,20 @@
 var connection = require('../conexion');
 //creamos un objeto para ir almacenandotodo lo que necesitemos
-var CanchasModel = {};
+var ReservasModel = {};
 
 //---------------------------------------------------------------
-//obtenemos todos los estados
-CanchasModel.getCanchas = function (callback) {
+//obtenemos todos los tipos de documento
+ReservasModel.getReserva = function (callback) {
     if (connection) {
-        var sql = "SELECT id_cancha " +
-            ", id_estado " +
-            ", id_tipo_cancha" +
-            ", 	nombre_cancha " +
-            " FROM bas_canchas" +
-            " ORDER BY nombre_cancha ;";
+        var sql = "SELECT id_reserva" +
+        ",id_cancha"+
+        ",id_prestamo" +
+        ",Fecha_Reserva" +
+        ",Hora_Reserva" +
+        ",id_valor" +
+        ",id_cliente"  +            
+           " FROM app_reservas" +
+            " ORDER BY id_reserva;";
 
         connection.query(sql, function (error, rows) {
             if (error) {
@@ -23,16 +26,20 @@ CanchasModel.getCanchas = function (callback) {
         });
     }
 };
+
 //---------------------------------------------------------------
-//obtenemos un estado por su id
-CanchasModel.getCancha = function (id, callback) {
+//obtenemos un tipo doc por su id
+ReservasModel.getReserv = function (id, callback) {
     if (connection) {
-        var sql = "SELECT id_cancha " +
-        ", id_estado " +
-        ", id_tipo_cancha" +
-        ", 	nombre_cancha " +
-        " FROM bas_canchas" +
-            " WHERE id_cancha  = " +
+        var sql = "SELECT id_reserva" +
+        ",id_cancha"+
+        ",id_prestamo" +
+        ",Fecha_Reserva" +
+        ",Hora_Reserva" +
+        ",id_valor" +
+        ",id_cliente"  +            
+        " FROM app_reservas" +
+        " WHERE id_reserva= " +
             connection.escape(id) + ";";
 
         //console.log(id);
@@ -50,12 +57,12 @@ CanchasModel.getCancha = function (id, callback) {
 };
 
 //---------------------------------------------------------------
-//añadir un nuevo estado
-CanchasModel.insertCanchas = function (TipCanchas, callback) {
+//añadir un nuevo tipo de documento
+ReservasModel.insertReserva = function (ReservaData, callback) {
     if (connection) {
-        var sql = "INSERT INTO bas_canchas SET ?";
+        var sql = "INSERT INTO app_reservas SET ?";
 
-        connection.query(sql, TipCanchas, function (error, result) {
+        connection.query(sql, ReservaData, function (error, result) {
             //se muestra el mensaje correspondiente
             if (error) {
                 throw error;
@@ -66,15 +73,19 @@ CanchasModel.insertCanchas = function (TipCanchas, callback) {
         });
     }
 };
+
 //---------------------------------------------------------------
-//actualizar un estado
-CanchasModel.updateCanchas = function (TipCanchass, callback) {
+//actualizar un tipo de documento
+ReservasModel.updateReserva = function (ReservaDatas, callback) {
 
     if (connection) {
-        var sql = "UPDATE bas_canchas SET 	id_estado = " + connection.escape(TipCanchass.id_estado) +
-        ",id_tipo_cancha = " + connection.escape(TipCanchass.id_tipo_cancha) +
-        ",nombre_cancha = " + connection.escape(TipCanchass.nombre_cancha) +
-        " WHERE id_cancha  =  " + connection.escape(TipCanchass.id_cancha) + ";";
+        var sql = "UPDATE app_reservas SET id_cancha = " + connection.escape(ReservaDatas.id_cancha) +
+        ",id_prestamo = " + connection.escape(ReservaDatas.id_prestamo) +
+        ",Fecha_Reserva = " + connection.escape(ReservaDatas.Fecha_Reserva) +
+        ",Hora_Reserva = " + connection.escape(ReservaDatas.Hora_Reserva) +
+        ",id_valor = " + connection.escape(ReservaDatas.id_valor) +
+        ",id_cliente = " + connection.escape(ReservaDatas.id_cliente) +
+         " WHERE  id_reserva = " + connection.escape(ReservaDatas.id_reserva) + ";";
 
         connection.query(sql, function (error, result) {
             //se muestra el mensaje correspondiente
@@ -90,4 +101,4 @@ CanchasModel.updateCanchas = function (TipCanchass, callback) {
 
 //---------------------------------------------------------------
 //exportamos el objeto para tenerlo disponible en la zona de rutas
-module.exports = CanchasModel;
+module.exports = ReservasModel;

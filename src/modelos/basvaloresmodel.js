@@ -1,15 +1,17 @@
 var connection = require('../Conexion');
 //creamos un objeto para ir almacenandotodo lo que necesitemos
-var ElementosModel = {};
+var ValoresModel = {};
 
 //---------------------------------------------------------------
 //obtenemos todos los estados
-ElementosModel.getElementos = function (callback) {
+ValoresModel.getValores = function (callback) {
     if (connection) {
-        var sql = "SELECT id_elemento " +
-            ", nombre_elemento " +
-            " FROM bas_elementos" +
-            " ORDER BY nombre_elemento ;";
+        var sql = "SELECT id_valor " +
+            ", id_cancha " +
+            ",id_prestamo" +
+            ",costo" +
+            " FROM bas_valores" +
+            " ORDER BY id_valor ;";
 
         connection.query(sql, function (error, rows) {
             if (error) {
@@ -23,12 +25,14 @@ ElementosModel.getElementos = function (callback) {
 };
 //---------------------------------------------------------------
 //obtenemos un estado por su id
-ElementosModel.getElement = function (id, callback) {
+ValoresModel.getValor = function (id, callback) {
     if (connection) {
-        var sql =  "SELECT id_elemento " +
-        ", nombre_elemento " +
-        " FROM bas_elementos" +
-            " WHERE id_elemento  = " +
+        var sql = "SELECT id_valor " +
+        ", id_cancha " +
+        ",id_prestamo" +
+        ",costo" +
+        " FROM bas_valores" +
+            " WHERE id_valor  = " +
             connection.escape(id) + ";";
 
         //console.log(id);
@@ -47,11 +51,11 @@ ElementosModel.getElement = function (id, callback) {
 
 //---------------------------------------------------------------
 //añadir un nuevo estado
-ElementosModel.insertElemento = function (TipElemento, callback) {
+ValoresModel.insertValor = function (TipValor, callback) {
     if (connection) {
-        var sql = "INSERT INTO bas_elementos SET ?";
+        var sql = "INSERT INTO bas_valores SET ?";
 
-        connection.query(sql, TipElemento, function (error, result) {
+        connection.query(sql, TipValor, function (error, result) {
             //se muestra el mensaje correspondiente
             if (error) {
                 throw error;
@@ -64,11 +68,13 @@ ElementosModel.insertElemento = function (TipElemento, callback) {
 };
 //---------------------------------------------------------------
 //actualizar un estado
-ElementosModel.updateElemento = function (TipElement, callback) {
+ValoresModel.updateValores = function (TipValores, callback) {
 
     if (connection) {
-        var sql = "UPDATE bas_elementos SET nombre_elemento = " + connection.escape(TipElement.nombre_elemento) +
-                  " WHERE id_elemento  =  " + connection.escape(TipElement.id_elemento) + ";";
+        var sql = "UPDATE bas_valores SET id_cancha = " + connection.escape(TipValores.id_cancha) +
+        ",id_prestamo = " + connection.escape(TipValores.id_prestamo) +
+        ",costo = " + connection.escape(TipValores.costo) +
+        " WHERE id_valor  =  " + connection.escape(TipValores.id_valor) + ";";
 
         connection.query(sql, function (error, result) {
             //se muestra el mensaje correspondiente
@@ -84,4 +90,4 @@ ElementosModel.updateElemento = function (TipElement, callback) {
 
 //---------------------------------------------------------------
 //exportamos el objeto para tenerlo disponible en la zona de rutas
-module.exports = ElementosModel;
+module.exports = ValoresModel;

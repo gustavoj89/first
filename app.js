@@ -4,11 +4,15 @@ var http = require('http');//protocolo de intercambio de archivos
 var path = require('path');//direccion
 
 
-var tipdoc = require('./src/rutas/tipdocruta');//ruta
-var tipcancha = require('./src/rutas/bastiposcancharuta');
-var estados = require('./src/rutas/basestadosruta');
-var prestamos = require('./src/rutas/basprestamosruta');
-var canchas = require('./src/rutas/bascanchasruta');
+var tipdoc = require('./src/rutas/tipdocruta');//ruta sirve
+var estados = require('./src/rutas/basestadosruta'); //ruta sirve
+var prestamos = require('./src/rutas/basprestamosruta');//ruta sirve
+var cliente = require('./src/rutas/appclientesruta');//ruta sirve
+var reservas = require('./src/rutas/appreservasruta');//ruta sirve
+var tipcanchas = require('./src/rutas/tipcanchasruta');//ruta sirve
+var canchas = require('./src/rutas/bascanchasruta');//ruta sirve
+var elementos = require('./src/rutas/baselementosruta');//ruta sirve
+var valores = require('./src/rutas/basvaloresruta');//ruta sirve
 
 var app = express();//recibe un constructor
 
@@ -44,10 +48,16 @@ app.use(function (req, res, next)
 
 
   app.use('/tipdoc', tipdoc());//ruta para el servicio
-  app.use('/tipcancha', tipcancha());
-  app.use('/estados', estados());
-  app.use('/prestamos', prestamos());
-  app.use('/canchas', canchas());
+  app.use('/estados', estados());//ruta para el servicio
+  app.use('/prestamos', prestamos());//ruta para el servicio
+  app.use('/cliente', cliente());//ruta para el servicio 
+  app.use('/reservas', reservas());// ruta para el servicio
+  app.use('/tipcanchas', tipcanchas());//ruta para el servicio
+  app.use('/canchas', canchas());//ruta para el servicio
+  app.use('/elementos', elementos());//ruta para el servicio
+  app.use('/valores', valores());//
+
+
 
 
 http.createServer(app).listen(app.get('port'), function ( )

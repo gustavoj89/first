@@ -1,4 +1,4 @@
-var connection = require('../Conexion');
+var connection = require('../conexion');
 //creamos un objeto para ir almacenandotodo lo que necesitemos
 var TipDocModel = {};
 

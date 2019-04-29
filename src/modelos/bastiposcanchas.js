@@ -1,15 +1,16 @@
-var connection = require('../Conexion');
+var connection = require('../conexion');
 //creamos un objeto para ir almacenandotodo lo que necesitemos
-var ElementosModel = {};
+var TipCanchaModel = {};
 
 //---------------------------------------------------------------
 //obtenemos todos los estados
-ElementosModel.getElementos = function (callback) {
+TipCanchaModel.getCancha = function (callback) {
     if (connection) {
-        var sql = "SELECT id_elemento " +
-            ", nombre_elemento " +
-            " FROM bas_elementos" +
-            " ORDER BY nombre_elemento ;";
+        var sql = "SELECT id_tipo_cancha " +
+            ", tipo_cancha " +
+            ",id_cancha" +
+            " FROM bastipos_canchas" +
+            " ORDER BY tipo_cancha ;";
 
         connection.query(sql, function (error, rows) {
             if (error) {
@@ -23,12 +24,13 @@ ElementosModel.getElementos = function (callback) {
 };
 //---------------------------------------------------------------
 //obtenemos un estado por su id
-ElementosModel.getElement = function (id, callback) {
+TipCanchaModel.getCanchas = function (id, callback) {
     if (connection) {
-        var sql =  "SELECT id_elemento " +
-        ", nombre_elemento " +
-        " FROM bas_elementos" +
-            " WHERE id_elemento  = " +
+        var sql = "SELECT id_tipo_cancha " +
+        ", tipo_cancha " +
+        ",id_cancha" +
+        " FROM bastipos_canchas" +
+            " WHERE id_tipo_cancha  = " +
             connection.escape(id) + ";";
 
         //console.log(id);
@@ -47,11 +49,11 @@ ElementosModel.getElement = function (id, callback) {
 
 //---------------------------------------------------------------
 //añadir un nuevo estado
-ElementosModel.insertElemento = function (TipElemento, callback) {
+TipCanchaModel.insertCancha = function (TipCancha, callback) {
     if (connection) {
-        var sql = "INSERT INTO bas_elementos SET ?";
+        var sql = "INSERT INTO bastipos_canchas SET ?";
 
-        connection.query(sql, TipElemento, function (error, result) {
+        connection.query(sql, TipCancha, function (error, result) {
             //se muestra el mensaje correspondiente
             if (error) {
                 throw error;
@@ -64,11 +66,12 @@ ElementosModel.insertElemento = function (TipElemento, callback) {
 };
 //---------------------------------------------------------------
 //actualizar un estado
-ElementosModel.updateElemento = function (TipElement, callback) {
+TipCanchaModel.updateCancha = function (TipCanchas, callback) {
 
     if (connection) {
-        var sql = "UPDATE bas_elementos SET nombre_elemento = " + connection.escape(TipElement.nombre_elemento) +
-                  " WHERE id_elemento  =  " + connection.escape(TipElement.id_elemento) + ";";
+        var sql = "UPDATE bastipos_canchas SET 	tipo_cancha = " + connection.escape(TipCanchas.tipo_cancha) +
+        ",id_cancha = " + connection.escape(TipCanchas.id_cancha) +          
+        " WHERE id_tipo_cancha  =  " + connection.escape(TipCanchas.id_tipo_cancha) + ";";
 
         connection.query(sql, function (error, result) {
             //se muestra el mensaje correspondiente
@@ -84,4 +87,4 @@ ElementosModel.updateElemento = function (TipElement, callback) {
 
 //---------------------------------------------------------------
 //exportamos el objeto para tenerlo disponible en la zona de rutas
-module.exports = ElementosModel;
+module.exports = TipCanchaModel;

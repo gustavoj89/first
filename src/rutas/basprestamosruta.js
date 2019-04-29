@@ -67,7 +67,7 @@ PrestamosModel.insertPrestamo(TipPrestamo, function (error, data) {
     router.put("/", function (req, res) {
         //almacenamos los datos de la petición en un objeto
 
-        var TipPrestamo =
+        var TipPrestamos =
         {
             id_prestamo: req.body.id_prestamo,
             id_elemento: req.body.id_elemento,
@@ -78,7 +78,7 @@ PrestamosModel.insertPrestamo(TipPrestamo, function (error, data) {
 
 
         //usamos la funcion para actualizar
-        PrestamosModel.updatePrestamo(TipPrestamo, function (error, data) {
+        PrestamosModel.updatePrestamo(TipPrestamos, function (error, data) {
             //se muestra el mensaje correspondiente
             if (data && data.msg) {
                 res.status(200).json(data);

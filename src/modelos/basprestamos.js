@@ -70,14 +70,14 @@ PrestamosModel.insertPrestamo = function (TipPrestamo, callback) {
 };
 //---------------------------------------------------------------
 //actualizar un prestamo
-PrestamosModel.updatePrestamo = function (TipPrestamo, callback) {
+PrestamosModel.updatePrestamo = function (TipPrestamos, callback) {
 
     if (connection) {
-        var sql = "UPDATE bas_prestamos SET id_elemento = " + connection.escape(TipPrestamo.id_elemento) +
-        "fecha_prestamo = " + connection.escape(TipPrestamo.fecha_prestamo) + 
-        "hora_prestamo = " + connection.escape(TipPrestamo.hora_prestamo) + 
-        "id_valor = " + connection.escape(TipPrestamo.id_valor) + 
-        " WHERE  id_prestamo =  " + connection.escape(TipPrestamo.id_prestamo) + ";";
+        var sql = "UPDATE bas_prestamos SET id_elemento = " + connection.escape(TipPrestamos.id_elemento) +
+        ",fecha_prestamo = " + connection.escape(TipPrestamos.fecha_prestamo) + 
+        ",hora_prestamo = " + connection.escape(TipPrestamos.hora_prestamo) + 
+        ",id_valor = " + connection.escape(TipPrestamos.id_valor) + 
+        " WHERE  id_prestamo =  " + connection.escape(TipPrestamos.id_prestamo) + ";";
 
         connection.query(sql, function (error, result) {
             //se muestra el mensaje correspondiente

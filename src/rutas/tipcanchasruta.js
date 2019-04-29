@@ -1,5 +1,5 @@
 //obtenemos el modelo TipDocModel con toda la funcionalidad
-var CanchasModel = require('../modelos/bascanchasmodel');
+var TipCanchaModel = require('../Modelos/bastiposcanchas');
 var express = require('express');
 var router = express.Router();
 
@@ -9,7 +9,7 @@ module.exports = function () {
     //---------------------------------------------------------------
     //Muestra el método CRUL Listar que muestra todos los tipos de documentos
     router.get("/", function (req, res) {
-        CanchasModel.getCanchas(function (error, data) {
+        TipCanchaModel.getCancha(function (error, data) {
             res.status(200).json(data);
         });
     });
@@ -21,7 +21,7 @@ module.exports = function () {
 
         //solo actualizamos si la id es un número
         if (!isNaN(id)) {
-            CanchasModel.getCancha(id, function (error, data) {
+            TipCanchaModel.getCanchas(id, function (error, data) {
                 //si el tipo de documento existe lo mostramos en formato json
                 if (typeof data !== 'undefined' && data.length > 0) {
                     res.status(200).json(data);
@@ -45,16 +45,15 @@ res.status(500).json({ "msg": "error" });
     //Muestra y captura los datos del método CRUL crear, usando el verbo post
     router.post("/", function (req, res) {
         //creamos un objeto Json con los datos del tipo de documento
-        var TipCanchas =
+        var TipCancha =
         {
-        id_cancha: null,
-        id_estado: req.body.id_estado,
-        id_tipo_cancha: req.body.id_tipo_cancha,
-        nombre_cancha: req.body.nombre_cancha,
-            
+        id_tipo_cancha: null,
+        tipo_cancha:req.body.tipo_cancha,
+        id_cancha: req.body.id_cancha,
+           
         };
 //usamos la funcion para insertar
-CanchasModel.insertCanchas(TipCanchas, function (error, data) {
+TipCanchaModel.insertCancha(TipCancha, function (error, data) {
     //se muestra el mensaje correspondiente
     if (data) {
         res.status(200).json(data);
@@ -69,15 +68,14 @@ CanchasModel.insertCanchas(TipCanchas, function (error, data) {
     router.put("/", function (req, res) {
         //almacenamos los datos de la petición en un objeto
 
-        var TipCanchass =
+        var TipCanchas =
         {
-        id_cancha: req.body.id_cancha,
-        id_estado: req.body.id_estado,
         id_tipo_cancha: req.body.id_tipo_cancha,
-        nombre_cancha: req.body.nombre_cancha,
+        tipo_cancha:req.body.tipo_cancha,
+        id_cancha: req.body.id_cancha,
         };
 //usamos la funcion para actualizar
-CanchasModel.updateCanchas(TipCanchass, function (error, data) {
+TipCanchaModel.updateCancha(TipCanchas, function (error, data) {
     //se muestra el mensaje correspondiente
     if (data && data.msg) {
         res.status(200).json(data);
