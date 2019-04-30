@@ -55,7 +55,7 @@ app.use(function (req, res, next)
   app.use('/tipcanchas', tipcanchas());//ruta para el servicio
   app.use('/canchas', canchas());//ruta para el servicio
   app.use('/elementos', elementos());//ruta para el servicio
-  app.use('/valores', valores());//
+  app.use('/valores', valores());//ruta para el servicio
 
 
 
