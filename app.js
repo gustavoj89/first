@@ -14,6 +14,7 @@ var canchas = require('./src/rutas/bascanchasruta');//ruta sirve
 var elementos = require('./src/rutas/baselementosruta');//ruta sirve
 var valores = require('./src/rutas/basvaloresruta');//ruta sirve
 var informeuno = require('./src/rutas/informeunorutas');//ruta sirve
+var informedos = require('./src/rutas/informedosruta');//ruta sirve
 
 var app = express();//recibe un constructor
 
@@ -58,7 +59,7 @@ app.use(function (req, res, next)
   app.use('/elementos', elementos());//ruta para el servicio
   app.use('/valores', valores());//ruta para el servicio
   app.use('/informeuno', informeuno());//ruta para el servicio
-
+  app.use('/informedos', informedos());//ruta para el servicio
 
 
 http.createServer(app).listen(app.get('port'), function ( )
