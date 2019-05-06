@@ -13,6 +13,7 @@ var tipcanchas = require('./src/rutas/tipcanchasruta');//ruta sirve
 var canchas = require('./src/rutas/bascanchasruta');//ruta sirve
 var elementos = require('./src/rutas/baselementosruta');//ruta sirve
 var valores = require('./src/rutas/basvaloresruta');//ruta sirve
+var clientetiempo = require('./src/rutas/ClientexTiemporuta');
 
 var app = express();//recibe un constructor
 
@@ -56,7 +57,7 @@ app.use(function (req, res, next)
   app.use('/canchas', canchas());//ruta para el servicio
   app.use('/elementos', elementos());//ruta para el servicio
   app.use('/valores', valores());//ruta para el servicio
-
+  app.use('/clientetiempo', clientetiempo());//ruta para el servicio
 
 
 
