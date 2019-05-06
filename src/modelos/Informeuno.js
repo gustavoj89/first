@@ -5,8 +5,11 @@ var Informeuno = {};
 //---------------------------------------------------------------
 //obtenemos todos los clientes
 Informeuno.getInforme = function (callback) {
+
+    var z 
+    
     if (connection) {
-        var sql = "SELECT "+r.id_cliente +
+        var sql = "SELECT r.id_cliente" +
         CONCAT(COALESCE(c.primer_nombre,''),' ',
         COALESCE( c.segundo_nombre,''), ' ',
     COALESCE(c.primer_apellido,''),' ',
