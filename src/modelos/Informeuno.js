@@ -7,8 +7,8 @@ var Informeuno = {};
 Informeuno.getInforme = function (callback) {
 
     var z,x;
-    z="'2019-04-01'";
-    x="'2019-04-08'";
+    z="''";
+    x="''";
     
     if (connection) {
         var sql = "SELECT  r.id_cliente, "+
@@ -21,7 +21,7 @@ Informeuno.getInforme = function (callback) {
     " join app_clientes AS c on r.id_cliente = c.id_cliente"+
     " join bas_elementos AS e on e.id_elemento = p.id_elemento"+
     " join bas_valores AS v on p.id_valor = v.id_valor "+
-    " WHERE p.fecha_prestamo BETWEEN  '2019-04-01' AND  '2019-04-08' ";
+    " WHERE p.fecha_prestamo BETWEEN" +'x'+ "AND" +'z' ;
         
         
 
