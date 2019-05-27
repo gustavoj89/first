@@ -4,9 +4,10 @@ var Informeuno = {};
 
 //---------------------------------------------------------------
 //obtenemos todos los clientes
-Informeuno.getInforme = function (callback) {
+Informeuno.getInforme = function (fechauno, fechados, callback) {
 
-    var z,x;
+    var z, x;
+    
     z="''";
     x="''";
     
@@ -21,7 +22,7 @@ Informeuno.getInforme = function (callback) {
     " join app_clientes AS c on r.id_cliente = c.id_cliente"+
     " join bas_elementos AS e on e.id_elemento = p.id_elemento"+
     " join bas_valores AS v on p.id_valor = v.id_valor "+
-    " WHERE p.fecha_prestamo BETWEEN" +'x'+ "AND" +'z' ;
+            " WHERE p.fecha_prestamo BETWEEN" + `${x}` + "AND" + `${z}` ;
         
         
 
