@@ -91,3 +91,6 @@ CanchasModel.updateCanchas = function (TipCanchass, callback) {
 //---------------------------------------------------------------
 //exportamos el objeto para tenerlo disponible en la zona de rutas
 module.exports = CanchasModel;
+
+
+var x = 1;
